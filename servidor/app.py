@@ -1,5 +1,5 @@
 import sqlite3
-from flask import Flask, request, g
+from flask import Flask, request, g, jsonify
 
 app = Flask(__name__)
 
@@ -34,4 +34,5 @@ def respuestaSensor():
 
     print (f"Nombre del sensor: {nombre}, valor: {valor}")
     cerrarConexion()
-    return "ok"
+    res = {"resultado": "ok"}
+    return jsonify(res)
