@@ -10,7 +10,7 @@ def dict_factory(cursor, row):
 
 def abrirConexion():
   if 'db' not in g:
-     g.db = sqlite3.connect("api.sqlite")
+     g.db = sqlite3.connect("valores.sqlite")
      g.db.row_factory = dict_factory
   return g.db
 
@@ -25,11 +25,13 @@ def hello_world():
     return "<p>Hello, World!</p>"
 
 @app.route("/api/sensor", methods=['POST'])
-def respuestaSensor():
-    abrirConexion()
-    n = request.json["Nombre"]
-    v = request.json["Valor"]
+def respuestaSensor(): 
+    nombre = request.json["Nombre"]
+    valor = request.json["Valor"]
+    db = abrirConexion()
+    db.execute("INSERT INTO valores(nombre, valor) VALUES (?, ?)", (nombre, valor))
+    db.commit()
 
-    print (f"Nombre del sensor: {n}, valor: {v}")
+    print (f"Nombre del sensor: {nombre}, valor: {valor}")
     cerrarConexion()
     return "ok"
