@@ -1,2 +1,4 @@
 1.En packge.json -> "type": "module" Es para que nos deje importar con input
 2.Cuando creamos una constante con mayuscula es porque siempre va a ser constante(nunca cambiará) Ej. const PORT = 5000
+
+mpn install dotenv ->
